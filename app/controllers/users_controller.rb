@@ -20,7 +20,11 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find_by(id: params[:id])
-    render :show
+    if @user
+      render :show
+    else
+      render json: { Error: "User does not exist"}
+    end
   end
 
   def update
@@ -32,6 +36,9 @@ class UsersController < ApplicationController
     render :show
   end
 
-
-
+  def delete
+    @user = User.find_by(id: params[:id])
+    @user.destroy
+    render json: {message: "User deleted"}
+  end
 end
