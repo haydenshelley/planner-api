@@ -1,2 +1,5 @@
-json.extract! plan, :id, :created_at, :updated_at
-json.url plan_url(plan, format: :json)
+json.id plan.id
+json.title plan.title
+json.date plan.date
+json.time plan.time
+json.info plan.info
