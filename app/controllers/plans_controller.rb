@@ -11,6 +11,7 @@ class PlansController < ApplicationController
       date: params[:date],
       time: params[:time],
       info: params[:info],
+      completed: false,
     )
     if @plan.save
       render json: { message: "Plan created successfully" }, status: :created
@@ -37,7 +38,9 @@ class PlansController < ApplicationController
 
   def delete
     @plan = Plan.find_by(id: params[:id])
-    @plan.destroy
-    render json: {message: "Plan deleted"}
+    @plan.update!(
+      completed: true,
+    )
+    render json: {message: "Plan completed"}
   end
 end

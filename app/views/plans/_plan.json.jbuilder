@@ -3,3 +3,4 @@ json.title plan.title
 json.date plan.date
 json.time plan.time
 json.info plan.info
+json.completed plan.completed
