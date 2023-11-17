@@ -4,11 +4,6 @@ class UsersController < ApplicationController
     render :index
   end
 
-  def show
-    @user = User.find_by(id: params[:id])
-    render :show
-  end
-
   def create
     user = User.new(
       name: params[:name],
@@ -22,4 +17,21 @@ class UsersController < ApplicationController
       render json: { errors: user.errors.full_messages }, status: :bad_request
     end
   end
+
+  def show
+    @user = User.find_by(id: params[:id])
+    render :show
+  end
+
+  def update
+    @user = User.find_by(id: params[:id])
+    @user.update!(
+      name: params[:name] || @user.name,
+      email: params[:email] || @user.email,
+    )
+    render :show
+  end
+
+
+
 end
